@@ -10,6 +10,8 @@ public interface UserCommonService {
 
     List<User> findAllUsers(QueryUser queryUser);
 
+    List<User> findAll();
+
     User updateUser(User old, User user);
 
     void deleteUser(Long id);
@@ -17,4 +19,6 @@ public interface UserCommonService {
     User save(User user);
 
     void deleteAll();
+
+    User findById(Long id);
 }

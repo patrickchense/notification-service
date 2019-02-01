@@ -11,12 +11,12 @@ public class UserBean {
 
     private Long id;
 
-    private String name;
+    private String sureName;
+
+    private String firstName;
+
+    private String gender;
 
     private String email;
-
-    private String salutation;
-
-    private String identifier;
 
 }

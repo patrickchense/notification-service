@@ -1,7 +1,6 @@
 package com.chenzhe.userservice.service;
 
 
-import com.chenzhe.userservice.IUserService;
 import com.chenzhe.userservice.UserServiceApplication;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,32 +17,29 @@ import java.util.List;
 public class TestUserService {
 
     @Autowired
-    private IUserService userService;
-
-    @Autowired
     private UserCommonService userCommonService;
 
     @Test
     public void testFindById() {
         User u = new User();
-        u.setName("test3");
+        u.setFirstName("test3");
         u.setEmail("test3@gmail.com");
         u = userCommonService.save(u);
         Assert.assertNotNull(u.getId());
-        User user1 = userService.findById(u.getId());
+        User user1 = userCommonService.findById(u.getId());
         Assert.assertNotNull(user1);
         Assert.assertEquals(u.getEmail(), user1.getEmail());
         Assert.assertEquals(u.getEmail(), user1.getEmail());
-        Assert.assertEquals(u.getName(), user1.getName());
+        Assert.assertEquals(u.getFirstName(), user1.getFirstName());
     }
 
     @Test
     public void testFindAll() {
-        List<User> users = userService.findAllUsers();
+        List<User> users = userCommonService.findAll();
         Assert.assertNotNull(users);
-        Assert.assertEquals(2, users.size());
+        Assert.assertEquals(3, users.size());
         users.sort((a, b) -> (int)(a.getCreateTime() - b.getCreateTime()));
-        Assert.assertEquals(users.get(0).getName(), "test");
+        Assert.assertEquals(users.get(0).getFirstName(), "tc");
         Assert.assertEquals(users.get(1).getEmail(), "test1@gmail.com");
     }
 }

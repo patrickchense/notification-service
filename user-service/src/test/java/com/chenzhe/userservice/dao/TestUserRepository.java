@@ -24,21 +24,21 @@ public class TestUserRepository {
     @Test
     public void testSave() {
         User user = new User();
-        user.setName("test1");
+        user.setFirstName("test1");
         user.setEmail("test1@gmail.com");
         user.setCreateTime(System.currentTimeMillis());
         User user1 = userRepository.save(user);
         Assert.assertNotNull(user1.getId());
         User user2 = userRepository.findById(user1.getId()).get();
         Assert.assertEquals(user1.getEmail(), user2.getEmail());
-        Assert.assertEquals(user1.getName(), user2.getName());
+        Assert.assertEquals(user1.getFirstName(), user2.getFirstName());
     }
 
 
     @Test
     public void testUpdate() {
         User user = new User();
-        user.setName("test1");
+        user.setSureName("test1");
         user.setEmail("test1@gmail.com");
         user.setCreateTime(System.currentTimeMillis());
         User user1 = userRepository.save(user);
@@ -51,7 +51,7 @@ public class TestUserRepository {
     @Test
     public void testDelete() {
         User user = new User();
-        user.setName("test1");
+        user.setFirstName("test1");
         user.setEmail("test1@gmail.com");
         user.setCreateTime(System.currentTimeMillis());
         User user1 = userRepository.save(user);

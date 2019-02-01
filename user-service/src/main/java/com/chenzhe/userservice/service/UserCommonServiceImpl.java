@@ -22,6 +22,11 @@ public class UserCommonServiceImpl implements UserCommonService{
     }
 
     @Override
+    public List<User> findAll() {
+       return userRepository.findAll();
+    }
+
+    @Override
     public User updateUser(User old, User user) {
         if (!old.equals(user)) {
             log.info("update user from {} to {}", old, user);
@@ -47,5 +52,10 @@ public class UserCommonServiceImpl implements UserCommonService{
     @Override
     public void deleteAll() {
         userRepository.deleteAll();
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

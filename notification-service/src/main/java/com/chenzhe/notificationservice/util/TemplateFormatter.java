@@ -1,6 +1,6 @@
 package com.chenzhe.notificationservice.util;
 
-import com.chenzhe.userservice.entity.User;
+import com.chenzhe.userservice.UserRpc;
 
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
@@ -14,7 +14,7 @@ public class TemplateFormatter {
     private static final String regex = fieldStart + "([^}]+)" + fieldEnd;
     private static final Pattern pattern = Pattern.compile(regex);
 
-    public static String format(String format, User user) throws Exception {
+    public static String format(String format, UserRpc user) throws Exception {
         Matcher m = pattern.matcher(format);
         String result = format;
         while (m.find()) {

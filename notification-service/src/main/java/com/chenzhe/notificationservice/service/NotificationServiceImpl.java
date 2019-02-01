@@ -5,7 +5,7 @@ import com.chenzhe.templateservice.ITemplateService;
 import com.chenzhe.userservice.IUserService;
 import com.chenzhe.notificationservice.util.TemplateFormatter;
 import com.chenzhe.templateservice.entity.Template;
-import com.chenzhe.userservice.entity.User;
+import com.chenzhe.userservice.UserRpc;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -34,7 +34,7 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Override
     public String sendWelcome(Long id) {
-        User user = userService.findById(id);
+        UserRpc user = userService.findById(id);
         if (user != null) {
             Template welcomeTemplate = templateService.findByKey(templateWelcomeKey);
             if (welcomeTemplate == null) {
@@ -55,7 +55,7 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Override
     public void sendNewsletters(String newsletterTemplateKey) {
-        List<User> users = userService.findAllUsers();
+        List<UserRpc> users = userService.findAllUsers();
         if (users == null || users.isEmpty()) {
             log.warn("no users, no need to send newsletters");
             return;
@@ -65,7 +65,7 @@ public class NotificationServiceImpl implements NotificationService{
             log.warn("no newsletter template, please add one first");
             return;
         }
-        for (User user : users) {
+        for (UserRpc user : users) {
             String newsletterMail = translateTemplate(newsletterTemplate.getText(), user);
             String emailTs = user.getEmail() + ";" + System.currentTimeMillis();
             CACHE_LETTERS.put(emailTs, newsletterMail);
@@ -94,7 +94,7 @@ public class NotificationServiceImpl implements NotificationService{
         }
     }
 
-    private String translateTemplate(String text, User user) {
+    private String translateTemplate(String text, UserRpc user) {
         try {
             return TemplateFormatter.format(text, user);
         } catch (Exception e) {

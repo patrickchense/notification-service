@@ -20,12 +20,12 @@ public class TestNotificationService {
     @Test
     public void testSendWelcome() {
         String mailInfo = notificationService.sendWelcome(1L);
-        Assert.assertEquals("Hello dear Mr test,\n" +
+        Assert.assertEquals("Hello dear Mr tc test,\n" +
                 "\n" +
                 "we are very happy to welcome you to our newsletter.\n" +
                 "\n" +
                 "In case you don't want to receive any further newsletters in the future please unsubscribe here:\n" +
-                "https://domain-of-product.de/unsubscribe-newsletter/test001\n" +
+                "https://domain-of-product.de/unsubscribe-newsletter/1\n" +
                 "\n" +
                 "Best Regards,\n" +
                 "Your Customer Support Team", mailInfo);
@@ -44,23 +44,23 @@ public class TestNotificationService {
         for (Map.Entry<String, String> entry : NotificationServiceImpl.CACHE_LETTERS.entrySet()) {
             if (entry.getKey().startsWith("test@")) {
                 //user id 1:
-                Assert.assertEquals(entry.getValue(), "Hello dear Mr test,\n" +
+                Assert.assertEquals(entry.getValue(), "Hello dear Mr tc test,\n" +
                         "\n" +
                         "this are our latest news...\n" +
                         "\n" +
                         "In case you don't want to receive any further newsletters in the future please unsubscribe here:\n" +
-                        "https://domain-of-product.de/unsubscribe-newsletter/test001\n" +
+                        "https://domain-of-product.de/unsubscribe-newsletter/1\n" +
                         "\n" +
                         "Best Regards,\n" +
                         "Your Customer Support Team");
             } else {
                 //user id 2
-                Assert.assertEquals(entry.getValue(), "Hello dear Mrs. test1,\n" +
+                Assert.assertEquals(entry.getValue(), "Hello dear Mrs tc test1,\n" +
                         "\n" +
                         "this are our latest news...\n" +
                         "\n" +
                         "In case you don't want to receive any further newsletters in the future please unsubscribe here:\n" +
-                        "https://domain-of-product.de/unsubscribe-newsletter/test002\n" +
+                        "https://domain-of-product.de/unsubscribe-newsletter/2\n" +
                         "\n" +
                         "Best Regards,\n" +
                         "Your Customer Support Team");

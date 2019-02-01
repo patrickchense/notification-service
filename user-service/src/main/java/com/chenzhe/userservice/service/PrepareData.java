@@ -17,21 +17,33 @@ public class PrepareData implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         //prepare
         User user = new User();
-        user.setName("test");
+        user.setSureName("test");
+        user.setFirstName("tc");
         user.setEmail("test@gmail.com");
         user.setCreateTime(System.currentTimeMillis());
-        user.setSalutation("Mr");
-        user.setIdentifier("test001");
+        user.setGender("male");
+        user.setSubscribedNewsletter("true");
         userCommonService.save(user);
         log.info("add init user {} into local db", user);
 
         User user1 = new User();
-        user1.setName("test1");
+        user1.setSureName("test1");
+        user1.setFirstName("tc");
+        user1.setGender("female");
         user1.setEmail("test1@gmail.com");
         user1.setCreateTime(System.currentTimeMillis());
-        user1.setSalutation("Mrs.");
-        user1.setIdentifier("test002");
+        user1.setSubscribedNewsletter("true");
         userCommonService.save(user1);
         log.info("add init user {} into local db", user1);
+
+        User user2 = new User();
+        user2.setSureName("test2");
+        user2.setFirstName("tc");
+        user2.setEmail("test2@gmail.com");
+        user2.setGender("female");
+        user2.setCreateTime(System.currentTimeMillis());
+        user2.setSubscribedNewsletter("false");
+        userCommonService.save(user2);
+        log.info("add init user {} into local db", user2);
     }
 }

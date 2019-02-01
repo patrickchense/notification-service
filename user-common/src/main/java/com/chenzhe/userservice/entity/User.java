@@ -5,10 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -20,17 +17,20 @@ public class User implements Serializable {
     @GeneratedValue
     private Long id;
 
-    private String name;
+    private String sureName;
+
+    private String firstName;
+
+    private String gender;
 
     private String email;
 
-    private String salutation;
-
-    private String identifier;
+    private String subscribedNewsletter;
 
     private Long createTime;
 
     private Long updateTime;
 
     private Long creator;
+
 }
