@@ -1,0 +1,16 @@
+package com.chenzhe.templateservice;
+
+import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@EnableDubboConfiguration
+public class TemplateServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TemplateServiceApplication.class, args);
+	}
+
+}
+
