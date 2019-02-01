@@ -1,7 +1,7 @@
-##User-Service
+## User-Service
 provides apis and services for all the user operation in notification system.
 
-##How to start
+## How to start
 1. run com.chenzhe.UserServiceApplication directly   
 2. using docker
     * build your local image:
@@ -12,7 +12,7 @@ provides apis and services for all the user operation in notification system.
         docker run -p 8090:8090 -p 20770:20770 userservice 
 
 
-##How to test
+## How to test
 1. using NotificationService unit test 
 2. using brower to test api, like: [http://localhost:8090/user/id/1]  
 response:  
