@@ -17,6 +17,6 @@ provides apis and services for all the user operation in notification system.
 2. using brower to test api, like: [http://localhost:8090/user/id/1]  
 response:  
 ```json
-{"id":1,"name":"test","email":"test@gmail.com","salutation":"Mr","identifier":"test001"}
+{"id":1,"sureName":"test","firstName":"tc","gender":"male","email":"test@gmail.com"}
 ```
     
