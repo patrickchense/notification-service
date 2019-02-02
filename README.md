@@ -22,12 +22,12 @@ There are three parts of the code.
 
 ## how to start
 * start user-service, go to project path
-  * mvn clean install
+  * run mvn clean install in each moudle (user-common, userservice-api, user-service)
   * docker build -f Dockerfile -t userservice .
   * docker run -p 8090:8090 -p 20770:20770 userservice
   * test user-service, access http://localhost:8090/user/id/1, shoule return user json string.
 * start template-service, go to project path
-  * mvn clean install
+  * run mvn clean install in each moudle (template-common, templateservice-api, template-service)
   * docker build -f Dockerfile -t templateservice . 
   * docker run -p 8080:8080 -p 20880:20880 templateservice 
   * test template-service, access http://localhost:8080/template/id/, shoule return template json string.
