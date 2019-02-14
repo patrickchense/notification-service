@@ -1,6 +1,5 @@
 package com.chenzhe.userservice.controller;
 
-import com.chenzhe.userservice.IUserService;
 import com.chenzhe.userservice.exp.UserNotExistException;
 import com.chenzhe.userservice.service.UserCommonService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class UserController {
     @Autowired
     private UserCommonService userCommonService;
 
-    @RequestMapping(value = "/id/{userId}", method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = "/id/{userId}")
     @ResponseBody
     public UserBean getUser(@PathVariable("userId") Long id) {
         User user = userCommonService.findById(id);
@@ -34,7 +33,7 @@ public class UserController {
             UserBean response = new UserBean(user.getId(), user.getSureName(), user.getFirstName(), user.getGender(), user.getEmail());
             return response;
         }
-        return null;
+        throw new UserNotExistException(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.POST, produces = "application/json")
@@ -47,7 +46,7 @@ public class UserController {
         return users.stream().map(u -> new UserBean(u.getId(), u.getSureName(), u.getFirstName(), u.getGender(), u.getEmail())).collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET, produces = "application/json")
+    @PostMapping(value = "/add")
     @ResponseBody
     public Response createUser(@RequestBody UserBean newUser) {
         // email format
@@ -57,7 +56,7 @@ public class UserController {
         return SUCCESS;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET, produces = "application/json")
+    @PutMapping(value = "/update")
     @ResponseBody
     public Response updateUser(@RequestBody UserBean newUser) {
         if (newUser.getId() == null) {
@@ -74,15 +73,10 @@ public class UserController {
         return SUCCESS;
     }
 
-    @RequestMapping(value = "/del", method = RequestMethod.GET, produces = "application/json")
+    @DeleteMapping(value = "/del/{userId}")
     @ResponseBody
     public Response deleteUser(@PathVariable("userId") Long id) {
-        try {
-            userCommonService.deleteUser(id);
-        } catch (UserNotExistException e) {
-            log.warn("delete user {} not exist", id);
-            return FAIL;
-        }
+        userCommonService.deleteUser(id);
         return SUCCESS;
     }
 
