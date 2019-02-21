@@ -16,6 +16,8 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestUserService {
 
+    // https://medium.freecodecamp.org/unit-testing-services-endpoints-and-repositories-in-spring-boot-4b7d9dc2b772
+    // TODO test 写的有问题，需要改，用mock的方式参考上面的帖子
     @Autowired
     private UserCommonService userCommonService;
 
